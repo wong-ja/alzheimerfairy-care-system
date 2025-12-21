@@ -1,6 +1,6 @@
 # STEMpower-Hacks
 
-This project was created for the [STEMpower Hacks 2025 hackathon]().
+This project was created for the [STEMpower Hacks 2025 hackathon](https://stempower-her-hacks.devpost.com/).
 
 ## Project Idea: (AlzheimerFairy AI)
 
