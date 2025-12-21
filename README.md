@@ -1,3 +1,47 @@
+# STEMpower-Hacks
+
+
+
+This project was created for the [STEMpower Hacks 2025 hackathon](https://stempower-her-hacks.devpost.com/).
+
+
+
+## Project Idea: (AlzheimerFairy AI)
+
+
+
+TRACK: HealthTech and Wellness
+
+
+
+TECH STACK:
+
+- Typescript
+
+- Tailwind CSS
+
+- Next.js
+
+- Supabase
+
+- Python
+
+- Scikit-learn
+
+
+
+IDEA: 
+
+- AUDIENCE: Alzheimer patients & caregigvers
+
+- PURPOSE: Track Alzheimer patient's daily habits, lifestyle factors, medical factors, and symptoms -- predict (ML) severity or possible risks
+
+
+
+--- 
+---
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
