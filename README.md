@@ -8,7 +8,7 @@ Try it out! [https://alzheimerfairy-care-system.vercel.app/](https://alzheimerfa
 
 ![AlzheimerFairy_Care_System DEMO](public/DEMO_AlzheimerFairy_Care_System.gif)
 
-Watch .MP4 Here: [AlzheimerFairy_Care_System.MP4](public/DEMO_AlzheimerFairy_Care_System.gif)
+Watch .MP4 Here: [AlzheimerFairy_Care_System.MP4](public/DEMO_AlzheimerFairy_Care_System.mp4)
 
 ---
 
