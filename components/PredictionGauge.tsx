@@ -8,10 +8,10 @@ const data = [
 ];
 
 export default function PredictionGauge({ value }: { value: number }) {
-  const needleAngle = (value / 10) * 180;
+    const needleAngle = ((value - 1) / 9) * 180 - 90;
 
     return (
-        <div className="w-full h-64 relative flex justify-center">
+        <div className="w-full h-64 relative flex justify-center items-end overflow-hidden">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
@@ -32,10 +32,10 @@ export default function PredictionGauge({ value }: { value: number }) {
                 </PieChart>
             </ResponsiveContainer>
 
-            <div className="absolute bottom-[20%] w-1 h-24 bg-slate-800 origin-bottom transition-transform duration-1000 ease-out rounded-full"
-                style={{ transform: `rotate(${needleAngle - 90}deg)` }}
+            <div className="absolute bottom-0 w-1.5 h-32 bg-slate-800 origin-bottom transition-all duration-1000 ease-out rounded-full z-20"
+                style={{ transform: `rotate(${needleAngle}deg)` }}
             />
-            <div className="absolute bottom-[18%] w-6 h-6 bg-slate-800 rounded-full border-4 border-white shadow-sm" />
+            <div className="absolute bottom-2.5 w-8 h-8 bg-slate-800 rounded-full border-4 border-white shadow-lg z-30" />
         </div>
     );
 }
