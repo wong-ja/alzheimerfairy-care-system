@@ -2,7 +2,7 @@
 
 This project was created for the [STEMpower Hacks 2025 hackathon](https://stempower-her-hacks.devpost.com/).
 
-## Project Idea: (AlzheimerFairy AI)
+## Project Idea: (AlzheimerFairy Care System)
 
 TRACK: HealthTech and Wellness
 

@@ -10,7 +10,7 @@ export default function WelcomePage() {
           <Brain className="w-4 h-4 mr-2" /> AI-Powered Wellness Care for Alzheimer&apos;s
         </div>
         <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight">
-          AlzheimerFairy <span className="text-blue-600">AI</span>
+          AlzheimerFairy <span className="text-blue-600">Care System</span>
         </h1>
         <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
           This simple, daily tracker uses machine learning to bridge the gap between caregivers, patients, and better health outcomes.
@@ -50,7 +50,7 @@ export default function WelcomePage() {
       <section className="py-20 text-center border-t border-slate-100">
         <h2 className="text-2xl font-bold italic text-slate-400">Consistency is Key. Your Health Comes First!</h2>
         <p className="mt-4 text-slate-500 max-w-lg mx-auto">
-          Missed a day? Don&apos;t worry. AlzheimerFairy AI is designed to handle missing entries and still provide meaningful insights.
+          Missed a day? Don&apos;t worry. AlzheimerFairy is designed to handle missing entries and still provide meaningful insights.
         </p>
       </section>
     </div>

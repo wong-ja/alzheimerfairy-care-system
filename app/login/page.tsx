@@ -18,7 +18,7 @@ export default async function LoginPage({
         )}
 
             <div className="text-center">
-                <h1 className="text-3xl font-extrabold text-blue-600">AlzheimerFairy <span className="text-blue-600">AI</span></h1>
+                <h1 className="text-3xl font-extrabold text-blue-600">AlzheimerFairy <span className="text-blue-600">Care System</span></h1>
                 <p className="mt-2 text-slate-500">Track the wellbeing of your loved ones.</p>
             </div>
 

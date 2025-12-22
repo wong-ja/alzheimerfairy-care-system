@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AlzheimerFairy AI | Caregiver Insights",
+  title: "AlzheimerFairy | Care System",
   description: "AI-powered care tracking",
 };
 
