@@ -6,11 +6,7 @@ Try it out! [https://alzheimerfairy-care-system.vercel.app/](https://alzheimerfa
 
 ![AlzheimerFairy_Care_System DEMO](public/DEMO_AlzheimerFairy_Care_System.gif)
 
-<p align="center">
-  <video src="
-  https://github.com/wong-ja/alzheimerfairy-care-system/blob/main/public/DEMO_AlzheimerFairy_Care_System.mp4?raw=true" width="100%"></video>
-</p>
-
+Watch .MP4 Here: [AlzheimerFairy_Care_System.MP4](public/DEMO_AlzheimerFairy_Care_System.gif)
 
 ---
 
