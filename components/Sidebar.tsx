@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Calendar, PlusCircle, History, Share2, X } from 'lucide-react';
 import { WellnessLog } from '../types/database';
@@ -78,14 +79,24 @@ export default function Sidebar() {
     return (
         <>
             <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-t border-slate-200 md:relative md:w-64 md:h-screen md:border-r md:border-t-0 p-4 flex md:flex-col justify-around md:justify-start gap-2">
-                <div className="hidden md:flex items-center gap-2 px-3 py-6 mb-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-xl flex items-center justify-center text-white font-black shadow-lg">
-                        🛡️
+                <Link 
+                    href="/" 
+                    className="hidden md:flex items-center gap-2 px-3 py-6 mb-4 hover:opacity-80 transition-opacity cursor-pointer"
+                >
+                    <div className="relative w-8 h-8 flex items-center justify-center">
+                        <Image 
+                            src="/shield.png" 
+                            alt="Logo" 
+                            fill
+                            sizes="32px"
+                            className="object-contain"
+                            priority
+                        />
                     </div>
                     <span className="text-xl font-black text-slate-900 tracking-tight">
                         AlzheimerFairy <span className="text-blue-600">Care System</span>
                     </span>
-                </div>
+                </Link>
 
                 {navItems.map((item) => {
                     const isActive = pathname === item.href;
