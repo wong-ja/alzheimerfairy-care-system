@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import { Brain, Activity, AlertCircle, Smile, Share2, ClipboardList } from 'lucide-react';
+import { Brain, Activity, AlertCircle, Smile, ClipboardList } from 'lucide-react';
 import PredictionGauge from '../../components/PredictionGauge';
 import MetricsTracker from '../../components/MetricsTracker';
 import { WellnessLog } from '../../types/database';
@@ -63,12 +63,6 @@ export default async function DashboardPage() {
                     <h1 className="text-4xl font-black text-slate-900 tracking-tight">Health Insights</h1>
                     <p className="text-slate-500 font-medium">AI-powered analysis of daily care logs.</p>
                 </header>
-                
-                {/* share with physician */}
-                <button className="flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold text-sm hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 active:scale-95">
-                    <Share2 size={18} />
-                    Share Report with Physician
-                </button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

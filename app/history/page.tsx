@@ -128,6 +128,15 @@ export default async function HistoryPage() {
                                         <div className="w-2 h-2 rounded-full bg-slate-300"></div>
                                         <p className="text-xs font-bold text-slate-500">Naps: <span className="text-slate-900">{log.nap_count}</span></p>
                                     </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+                                        <p className={`text-[10px] font-black uppercase`}>
+                                            Emergency?
+                                                <span className={`text-[10px] font-black uppercase ${log.is_emergency ? 'text-red-600' : 'text-emerald-600'}`}>
+                                                    &nbsp;&nbsp;{log.is_emergency  ? '⚠️ CRITICAL INCIDENT' : 'None reported'}
+                                                </span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
