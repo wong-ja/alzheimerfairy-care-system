@@ -1,10 +1,23 @@
 import { login, signup } from '../login/actions'
 
-export default function LoginPage() {
+export default async function LoginPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ error?: string; message?: string }>
+}) {
+    const { error, message } = await searchParams;
+
     return (
         <div className="flex min-h-[80vh] items-center justify-center">
             <div className="w-full max-w-md space-y-8 rounded-2xl border border-slate-200 bg-white p-10 shadow-xl">
-                    <div className="text-center">
+
+        {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm font-medium">
+                {error}
+            </div>
+        )}
+
+            <div className="text-center">
                         <h1 className="text-3xl font-extrabold text-blue-600">AlzheimerFairy AI</h1>
                         <p className="mt-2 text-slate-500">Track the wellbeing of your loved ones.</p>
                     </div>
