@@ -1,6 +1,8 @@
-# STEMpower-Hacks
+# STEMpower-Hacks 🛡️ AlzheimerFairy Care System
 
 This project was created for the [STEMpower Hacks 2025 hackathon](https://stempower-her-hacks.devpost.com/).
+
+## Demo
 
 Try it out! [https://alzheimerfairy-care-system.vercel.app/](https://alzheimerfairy-care-system.vercel.app/)
 
