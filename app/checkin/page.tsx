@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-
+import { Suspense } from 'react'
 
 export default function CheckinPage() {
     const router = useRouter();
@@ -75,6 +75,7 @@ export default function CheckinPage() {
     }
 
     return (
+        <Suspense fallback={<div>Loading form...</div>}>
         <div className="max-w-2xl mx-auto space-y-8 py-10">
             <header>
                 <h1 className="text-3xl font-bold text-slate-900">Daily Wellness Check-in</h1>
@@ -166,5 +167,6 @@ export default function CheckinPage() {
                 </button>
             </form>
         </div>
+        </Suspense>
     )
 }
