@@ -46,7 +46,7 @@ export default async function DashboardPage() {
     if (logs && logs.length >= 3) {
         try {
             // first run 'python app.py' in cd ml-api
-            const res = await fetch('http://localhost:5000/predict', {
+            const res = await fetch('https://alzheimerfairy-care-system.onrender.com/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(logs),
