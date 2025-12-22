@@ -5,7 +5,7 @@ export default async function LoginPage({
 }: {
     searchParams: Promise<{ error?: string; message?: string }>
 }) {
-    const { error, message } = await searchParams;
+    const { error } = await searchParams;
 
     return (
         <div className="flex min-h-[80vh] items-center justify-center">
@@ -18,9 +18,9 @@ export default async function LoginPage({
         )}
 
             <div className="text-center">
-                        <h1 className="text-3xl font-extrabold text-blue-600">AlzheimerFairy AI</h1>
-                        <p className="mt-2 text-slate-500">Track the wellbeing of your loved ones.</p>
-                    </div>
+                <h1 className="text-3xl font-extrabold text-blue-600">AlzheimerFairy <span className="text-blue-600">AI</span></h1>
+                <p className="mt-2 text-slate-500">Track the wellbeing of your loved ones.</p>
+            </div>
 
                 <form className="mt-8 space-y-6">
                     <div className="space-y-4">
