@@ -39,20 +39,26 @@ export default async function DashboardPage() {
     let prediction = { 
         predicted_severity: 5, 
         risk_level: 'Low', 
-        recommendation: 'Recording more data will improve accuracy...' 
+        recommendation: 'Recording more data (minimum 3 days) will improve AI accuracy...' 
     };
 
-    // backend prediction Logic
-    if (logs && logs.length >= 1) {
+    // backend prediction: scikit learn
+    if (logs && logs.length >= 3) {
         try {
+            // first run 'python app.py' in cd ml-api
             const res = await fetch('http://localhost:5000/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(logs),
+                cache: 'no-store'
             });
-            if (res.ok) prediction = await res.json();
+            
+            if (res.ok) {
+                prediction = await res.json();
+            }
         } catch (e) {
-            console.error("ML API Offline", e);
+            console.error("ML API Offline. Run your Flask server.", e);
+            prediction.recommendation = "AI Analysis is currently offline. Please start the ML server.";
         }
     }
 
@@ -61,7 +67,7 @@ export default async function DashboardPage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <header>
                     <h1 className="text-4xl font-black text-slate-900 tracking-tight">Health Insights</h1>
-                    <p className="text-slate-500 font-medium">AI-powered analysis of daily care logs.</p>
+                    <p className="text-slate-500 font-medium">Scikit-Learn Random Forest analysis of daily care logs.</p>
                 </header>
             </div>
 
@@ -70,7 +76,7 @@ export default async function DashboardPage() {
                 <div className="lg:col-span-2 bg-white border border-slate-200 rounded-4xl p-8 shadow-sm flex flex-col items-center justify-center relative overflow-hidden group">
                     <div className="absolute top-6 left-8 flex items-center gap-2 text-blue-600 font-black uppercase text-[10px] tracking-[0.2em]">
                         <Brain size={14} className="animate-pulse" /> 
-                        AI Prediction Model
+                        Random Forest Regressor
                     </div>
                     
                     <PredictionGauge value={prediction.predicted_severity} />
@@ -128,7 +134,7 @@ export default async function DashboardPage() {
             </div>
 
             <p className="text-center text-slate-400 text-xs font-medium">
-                Predictions are generated via Random Forest Regression. Consult a medical professional for clinical decisions.
+                Predictions are generated via Scikit-Learn. Consult a medical professional for clinical decisions.
             </p>
         </div>
     );

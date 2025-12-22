@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import numpy as np
+from sklearn.ensemble import RandomForestRegressor
 
 app = Flask(__name__)
 CORS(app)
@@ -9,40 +10,52 @@ CORS(app)
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    if not data or len(data) < 2:
+    if not data or len(data) < 3:
         return jsonify({
             "predicted_severity": 5, 
             "risk_level": "Low", 
-            "recommendation": "Start logging daily to see AI insights."
+            "recommendation": "Start logging daily (at least 3 days) to see AI insights."
         })
 
     df = pd.DataFrame(data)
-    df['checkin_date'] = pd.to_datetime(df['checkin_date'])
-    df = df.sort_values('checkin_date')
+    # feature engineering
+    df['severity_rating'] = pd.to_numeric(df['severity_rating'])
+    df['agitation_level'] = pd.to_numeric(df['agitation_level'])
+    df['mood_rating'] = pd.to_numeric(df['mood_rating'])
+    df['memory_score'] = pd.to_numeric(df['memory_score'])
+    df['meds_taken'] = df['meds_taken'].astype(int)
+    
+    features = ['severity_rating', 'agitation_level', 'mood_rating', 'meds_taken', 'nap_count']
+    X = df[features].iloc[:-1] # all days except last
+    y = df['severity_rating'].shift(-1).iloc[:-1] # tomorrow's prediction
+
+    # Random Forest Model
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model.fit(X, y)
+
+    latest_log = df[features].iloc[[-1]]
+    prediction = model.predict(latest_log)[0]
 
     latest_severity = df['severity_rating'].iloc[-1]
-    avg_sleep = df['nap_count'].mean()
-    severity_trend = df['severity_rating'].diff().tail(3).mean()
-
-    rec = "Status is stable. Keep up the routine."
-    risk = "Low"
-
-    if severity_trend > 0.5:
-        risk = "Moderate"
-        rec = "Symptoms show a slight upward trend. Check for changes in medication or environment."
+    diff = prediction - latest_severity
     
-    if latest_severity > 7 or df['is_emergency'].any():
-        risk = "High"
-        rec = "High severity detected. Ensure caregiver support is available and review recent notes."
+    risk = "Low"
+    rec = "Model indicates a stable outlook. Maintain current care patterns."
 
-    if avg_sleep > 2:
-        rec += " Excessive daytime napping detected, which can correlate with sundowning."
+    if prediction > 7 or diff > 1.5:
+        risk = "High"
+        rec = "Significant risk increase predicted. Review medication compliance and physical safety."
+    elif prediction > 4 or diff > 0.5:
+        risk = "Moderate"
+        rec = "Slight upward trend detected. Monitor for increased agitation during evening hours."
 
     return jsonify({
-        "predicted_severity": float(latest_severity + (severity_trend if not np.isnan(severity_trend) else 0)),
+        "predicted_severity": round(float(prediction), 1),
         "risk_level": risk,
         "recommendation": rec
     })
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
