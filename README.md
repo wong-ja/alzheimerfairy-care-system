@@ -4,11 +4,8 @@ This project was created for the [STEMpower Hacks 2025 hackathon](https://stempo
 
 Try it out! [https://alzheimerfairy-care-system.vercel.app/](https://alzheimerfairy-care-system.vercel.app/)
 
-![AlzheimerFairy_Care_System DEMO](public/DEMO_AlzheimerFairy_Care_System.mp4)
+![AlzheimerFairy_Care_System DEMO](public/DEMO_AlzheimerFairy_Care_System.gif)
 
-<div align="center">
-  <video src="https://github.com/wong-ja/alzheimerfairy-care-system/blob/main/public/DEMO_AlzheimerFairy_Care_System.mp4" width="600" />
-</div>
 
 ---
 
