@@ -1,14 +1,51 @@
 "use client"
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+
 
 export default function CheckinPage() {
-    const [loading, setLoading] = useState(false)
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const editDate = searchParams.get('date');
+    const [loading, setLoading] = useState(false);
+    const [severity, setSeverity] = useState(5);
+
+    const getGlowColor = (val: number) => {
+        if (val <= 3) return 'accent-emerald-500';
+        if (val <= 7) return 'accent-amber-500';
+        return 'accent-red-600';
+    };
+
+    const getColorClass = (val: number) => {
+        if (val <= 3) return 'text-emerald-500';
+        if (val <= 7) return 'text-amber-500';
+        return 'text-red-600';
+    };
+
+    useEffect(() => {
+        if (editDate) {
+            async function loadExisting() {
+                const { data } = await supabase
+                .from('wellness_logs')
+                .select('*')
+                .eq('checkin_date', editDate)
+                .single();
+                if (data) {
+                    setSeverity(data.severity_rating);
+                }
+            }
+            loadExisting();
+        }
+    }, [editDate]);
+
 
     async function handleSave(formData: FormData) {
         setLoading(true)
         const { data: { user } } = await supabase.auth.getUser()
-        
+
         if (!user) return alert("Please log in first")
 
         const entry = {
@@ -27,6 +64,11 @@ export default function CheckinPage() {
         const { error } = await supabase
             .from('wellness_logs')
             .upsert(entry, { onConflict: 'user_id, checkin_date' })
+
+        if (!error) {
+            router.push('/history');
+            router.refresh();
+        }
 
         setLoading(false)
         alert(error ? "Error: " + error.message : "Daily check-in updated!")
@@ -72,11 +114,31 @@ export default function CheckinPage() {
                     <textarea name="meal_details" placeholder="What did you eat today?" className="w-full p-3 border rounded-xl h-24" />
                 </div>
 
-                <div>
-                    <label className="block font-semibold mb-2 text-blue-700">Alzheimer Severity (1-10)</label>
-                    <input name="severity" type="range" min="1" max="10" className="w-full h-3 bg-blue-100 rounded-lg appearance-none cursor-pointer" />
-                    <div className="flex justify-between text-xs text-slate-400 mt-2">
-                        <span>Mild</span><span>Moderate</span><span>Severe</span>
+                <div className="space-y-4">
+                    <div className="flex justify-between items-end">
+                        <label className="block font-bold text-slate-700 text-lg">Alzheimer Severity</label>
+                        <span className={`text-3xl font-black transition-colors duration-300 drop-shadow-sm ${getColorClass(severity)}`}>
+                            {severity}
+                        </span>
+                    </div>
+                    <input 
+                        name="severity" 
+                        type="range" 
+                        min="1" 
+                        max="10" 
+                        value={severity}
+                        onChange={(e) => setSeverity(parseInt(e.target.value))}
+                        className={`w-full h-3 rounded-lg appearance-none cursor-pointer bg-slate-200 ${getGlowColor(severity)}`} 
+                    />
+                    <div className="grid grid-cols-10 px-1 text-[10px] font-bold text-slate-400">
+                        {[...Array(10)].map((_, i) => (
+                            <span key={i} className="text-center">{i + 1}</span>
+                        ))}
+                    </div>
+                    <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400 mt-1">
+                        <span className="text-emerald-500">Mild</span>
+                        <span className="text-amber-500">Moderate</span>
+                        <span className="text-red-600">Severe</span>
                     </div>
                 </div>
 
