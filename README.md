@@ -2,6 +2,16 @@
 
 This project was created for the [STEMpower Hacks 2025 hackathon](https://stempower-her-hacks.devpost.com/).
 
+Try it out! [https://alzheimerfairy-care-system.vercel.app/](https://alzheimerfairy-care-system.vercel.app/)
+
+![AlzheimerFairy_Care_System DEMO](public/DEMO_AlzheimerFairy_Care_System.mp4)
+
+<div align="center">
+  <video src="https://github.com/wong-ja/alzheimerfairy-care-system/blob/main/public/DEMO_AlzheimerFairy_Care_System.mp4" width="600" />
+</div>
+
+---
+
 ## 🛡️ AlzheimerFairy Care System
 
 **TRACK**: HealthTech and Wellness
@@ -134,8 +144,6 @@ create table wellness_logs (
   created_at timestamp with time zone default timezone('utc'::text, now())
 );
 ```
-- Enable RLS
-- Enable Auth Provider: Email, ...
 
 <br>
 
