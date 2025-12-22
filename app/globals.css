@@ -29,3 +29,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* physician report PRINT */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #clinical-print-section, #clinical-print-section * {
+    visibility: visible;
+  }
+  #clinical-print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: black !important;
+    background: white !important;
+  }
+  @page {
+    margin: 2cm;
+  }
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
