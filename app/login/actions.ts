@@ -29,9 +29,9 @@ export async function signup(formData: FormData) {
         password: formData.get('password') as string,
     }
 
-    const { error } = await supabase.auth.signUp(data)
+    const { data: signupData, error } = await supabase.auth.signUp(data)
 
-    if (error) {
+    if (error || !signupData?.session) {
         redirect('/login?error=Could not initialize signup')
     }
 
